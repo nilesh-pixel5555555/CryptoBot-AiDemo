@@ -151,7 +151,7 @@ def start_bot():
     scheduler = BackgroundScheduler()
     for s in CRYPTOS:
         # Schedule for every hour and half-hour
-        scheduler.add_job(generate_and_send_signal, 'cron', minute='0,30', args=[s.strip()])
+        scheduler.add_job(generate_and_send_signal, 'cron', minute='0,10', args=[s.strip()])
     scheduler.start()
     
     # Run first analysis immediately in the background
@@ -183,4 +183,5 @@ def health(): return jsonify({"status": "healthy"}), 200
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
+
 
